@@ -8,6 +8,14 @@ services:
     restart: unless-stopped
     ipc: none
     privileged: false
+    networks:
+      - app-network
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    security_opt:
+      - apparmor:unconfined
     environment:
       WEBAPI_URL: ${BROADSEA_HOST}/WebAPI
       ATLAS_INSTANCE_NAME: ${ATLAS_INSTANCE_NAME}

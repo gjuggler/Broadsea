@@ -11,6 +11,14 @@ services:
     tmpfs:
       - /tmp
     privileged: false
+    networks:
+      - app-network
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    security_opt:
+      - apparmor:unconfined
     volumes:
       - ${WEBAPI_CACERTS_FILE}:/tmp/cacerts
       - ${WEBAPI_ADDITIONAL_JDBC_FILE_PATH}:/var/lib/ohdsi/webapi/lib/additional/broadsea_mounted.jar
